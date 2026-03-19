@@ -1,0 +1,6 @@
+{
+    "hexo.deploy.showButton": true,
+    "hexo.markdown.autoPreview": true,
+    "hexo.toc.enableNumbering": true,
+    "hexo.upload": true
+}
