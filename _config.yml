@@ -70,5 +70,11 @@ markdown_it:
     xhtmlOut: false
     breaks: true
   plugins:
-    - markdown-it-toc-and-anchor
-    - markdown-it-attrs
+    - name: markdown-it-toc-and-anchor
+      options:
+        anchorClassName: 'anchor'
+    - name: markdown-it-attrs
+      options:
+        leftDelimiter: '{'
+        rightDelimiter: '}'
+        allowedAttributes: []
