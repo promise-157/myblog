@@ -64,3 +64,10 @@ deploy:
   type: git
   repo: https://github.com/promise-157/myblog.git
   branch: gh-pages
+markdown_it:
+  render:
+    html: true
+    xhtmlOut: false
+    breaks: true
+  plugins:
+    - markdown-it-toc-and-anchor
