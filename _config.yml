@@ -71,3 +71,4 @@ markdown_it:
     breaks: true
   plugins:
     - markdown-it-toc-and-anchor
+    - markdown-it-attrs
