@@ -117,6 +117,7 @@ navbar:
             url: https://github.com/ppoffice/hexo-theme-icarus
 # Page footer configurations
 footer:
+
     # Copyright text
     copyright: © 2019
     # Links to be shown on the right of the footer section
@@ -420,3 +421,23 @@ providers:
     fontcdn: google
     # Name or URL of the fontawesome icon font CDN provider
     iconcdn: fontawesome
+
+# 这里的 includes 是顶级配置，不要缩进在其他项目里
+# 确保 includes 处于顶级缩进，不要缩进在其他项目下面！
+includes:
+    head:
+        - <link rel="stylesheet" href="https://cdn.staticfile.net/aplayer/1.10.1/APlayer.min.css">
+    footer:
+        - <script src="https://cdn.staticfile.net/aplayer/1.10.1/APlayer.min.js"></script>
+        - <script src="https://cdn.staticfile.net/meting@2.0.1/dist/Meting.min.js"></script>
+        - |
+          <div id="music-player-container">
+            <meting-js
+                server="netease"
+                type="playlist"
+                id="2809564287"
+                fixed="true"
+                autoplay="false"
+                theme="#3273dc">
+            </meting-js>
+          </div>

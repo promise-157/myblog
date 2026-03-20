@@ -69,7 +69,7 @@ tags:
 公式：$$ 测试 $$ $ test $,单个为行间
 ```
 测试：*xx*，**xx**，_xx_,~~xx~~，
-![alt text](source\_posts\title\image.png)
+
 <baidu.com>
 $$ 测试 $$ $ test $
 
