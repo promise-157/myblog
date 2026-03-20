@@ -1,4 +1,6 @@
 @echo off
+:: 关键点 1：切换到 UTF-8 编码环境
+chcp 65001 >nul
 setlocal enabledelayedexpansion
 
 :: 1. 输入标题
@@ -28,7 +30,9 @@ set thumb_path=/gallery/defaultThumbnail%random_num%.png
 
 :: 5. 替换占位符 (利用临时文件)
 set temp_file=%target_file%.tmp
-(for /f "delims=" %%i in ('type "%target_file%"') do (
+
+:: 关键点 2：增加 usebackq，并确保 type 读取时环境已是 UTF-8
+(for /f "usebackq delims=" %%i in ("%target_file%") do (
     set "line=%%i"
     set "line=!line:COVER_PLACEHOLDER=%cover_path%!"
     set "line=!line:THUMBNAIL_PLACEHOLDER=%thumb_path%!"

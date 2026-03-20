@@ -78,3 +78,11 @@ markdown_it:
         leftDelimiter: '{'
         rightDelimiter: '}'
         allowedAttributes: []
+# 文章加密配置
+encrypt:
+  abstract: "这是一篇加密文章，请输入密码访问。"
+  message: "输入密码，开启隐藏内容："
+  tags:
+    - {name: private, password: "123456"} # 只要文章标签含 private，就会用这个密码
+  wrong_pass_message: "密码错误，请重试。"
+  wrong_hash_message: "内容校验失败。"
