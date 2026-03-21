@@ -4,16 +4,19 @@ comments: true
 cover: /gallery/defaultCover1.png
 thumbnail: /gallery/defaultThumbnail1.png
 tags:
-  - 未分类
+  - hexo
+  - 教程
 categories:
-  - 未分类
+  - 教程
 date: 2026-03-20 20:17:31
 description:
+toc: true
 ---
 - [生成底部播放器界面](#生成底部播放器界面)
 - [背景音乐播放](#背景音乐播放)
 - [进入特定md博文播放音乐](#进入特定md博文播放音乐)
 - [三种功能切换](#三种功能切换)
+- [GitHub网页未生效问题](#github网页未生效问题)
 
 <div id="enable-music"></div>
 
@@ -675,3 +678,11 @@ module.exports = cacheComponent(Footer, 'common.footer', props => {
 ` }} />
 ```
 > 其实我觉得直接复制粘贴全部代码最省事。。。
+
+## GitHub网页未生效问题
+因为npm包不会上传的仓库里，所以在本地修改文件并不会生效，因此需要手动包Icarus包复制到themes文件夹下同时改名为Icarus。 
+笔者这里遇到了移植后由于工作流默认在npm install时采用最新版本的npm，导致编译失败，对deploy.yml进行如下修改。  
+      - name: Install Dependencies
+        run: |
+          npm install
+          npm install --save hexo@^7.1.1 hexo-util@^3.2.0 semver@^7.5.4

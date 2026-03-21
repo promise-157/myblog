@@ -1,0 +1,180 @@
+---
+layout: false
+---
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导航首页 - Promise's Blog</title>
+    <style>
+        :root { 
+            --main-color: #ffffff; /* 主色调改为白色，适合深色背景 */
+            --accent-color: #3273dc; /* 强调色 */
+        }
+        
+        body { 
+            margin: 0; 
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh;
+            overflow: hidden;
+            
+            /* 背景图设置 */
+            background-image: url('/myblog/images/background.jpg'); 
+            background-position: center; 
+            background-repeat: no-repeat; 
+            background-size: cover; 
+            background-attachment: fixed; 
+        }
+
+        /* 全屏轻微调暗，确保文字清晰 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.2); 
+            z-index: -1;
+        }
+
+        .container { 
+            /* 毛玻璃效果 */
+            background: rgba(255, 255, 255, 0.15); 
+            backdrop-filter: blur(3px); 
+            -webkit-backdrop-filter: blur(3px);
+            
+            padding: 3rem 2rem; 
+            border-radius: 20px; 
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); 
+            
+            width: 85%; 
+            max-width: 450px; 
+            text-align: center;
+            color: white; /* 全局文字改为白色 */
+        }
+        
+        h1 { 
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem; 
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .description { 
+            color: rgba(255, 255, 255, 0.8); 
+            margin-bottom: 2.5rem; 
+            font-size: 1rem;
+        }
+        
+        /* 幽灵按钮样式 */
+        .nav-links { display: flex; flex-direction: column; gap: 15px; }
+        .btn {
+            padding: 12px; 
+            border-radius: 30px; 
+            text-decoration: none; 
+            font-weight: 500;
+            transition: all 0.4s ease; 
+            border: 1.5px solid rgba(255, 255, 255, 0.5); 
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .btn:hover { 
+            background: white; 
+            color: #333; 
+            border-color: white; 
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* 置顶主按钮稍微显眼一点 */
+        .btn-primary {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* 动态文章列表 */
+        #latest-posts { 
+            margin-top: 2.5rem; 
+            text-align: left; 
+            border-top: 1px solid rgba(255, 255, 255, 0.2); 
+            padding-top: 1.5rem; 
+        }
+        #latest-posts h3 { 
+            font-size: 1rem; 
+            margin-bottom: 12px; 
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .post-item { 
+            font-size: 0.95rem; 
+            margin: 10px 0; 
+            list-style: none; 
+            display: flex; 
+            align-items: center;
+        }
+        .post-link { 
+            color: white; 
+            text-decoration: none; 
+            opacity: 0.85;
+            transition: 0.3s;
+            white-space: nowrap; 
+            overflow: hidden; 
+            text-overflow: ellipsis;
+        }
+        .post-link:hover { opacity: 1; text-decoration: underline; }
+        .post-item::before { 
+            content: "✦"; 
+            margin-right: 10px; 
+            font-size: 0.8rem; 
+            color: rgba(255, 255, 255, 0.6);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Promise 的个人空间</h1>
+    <p class="description">技术、音乐与生活的交叉点</p>
+
+    <div class="nav-links">
+        <a href="/myblog/blog/" class="btn btn-primary">📖 进入博文列表 (Blog)</a>
+        <a href="/myblog/archives/" class="btn">📂 文章归档 (Archives)</a>
+        <a href="/myblog/about/" class="btn">👤 关于我 (About)</a>
+    </div>
+
+    <div id="latest-posts">
+        <h3>✨ 最近更新</h3>
+        <ul id="post-list" style="padding: 0; margin: 0;">
+            <li class="post-item">正在加载最新文章...</li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    fetch('/myblog/content.json')
+        .then(res => res.json())
+        .then(data => {
+            const listContainer = document.getElementById('post-list');
+            listContainer.innerHTML = '';
+            // 获取最近 5 篇
+            const recentPosts = data.posts.slice(0, 5);
+            
+            if (recentPosts.length === 0) {
+                listContainer.innerHTML = '<li class="post-item">暂无文章</li>';
+                return;
+            }
+
+            recentPosts.forEach(post => {
+                const li = document.createElement('li');
+                li.className = 'post-item';
+                li.innerHTML = `<a class="post-link" href="/myblog/${post.path}" title="${post.title}">${post.title}</a>`;
+                listContainer.appendChild(li);
+            });
+        })
+        .catch(err => {
+            document.getElementById('post-list').innerHTML = '<li class="post-item">暂时无法加载文章列表</li>';
+        });
+</script>
+
+</body>
+</html>

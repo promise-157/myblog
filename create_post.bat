@@ -24,7 +24,7 @@ if not exist "%target_file%" (
 )
 
 :: 4. 生成随机数 (1-5) 并设置封面
-set /a random_num=%random% %% 1 + 1
+set /a random_num=%random% %% 5 + 1
 set cover_path=/gallery/defaultCover%random_num%.png
 set thumb_path=/gallery/defaultThumbnail%random_num%.png
 

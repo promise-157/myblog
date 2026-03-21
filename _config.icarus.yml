@@ -106,6 +106,7 @@ navbar:
     # Navigation menu items
     menu:
         Home: /
+        Blog: /blog/
         Archives: /archives
         Categories: /categories
         Tags: /tags
@@ -230,7 +231,7 @@ widgets:
         position: left
         type: profile
         # Author name
-        author: Your name
+        author: Promise
         # Author title
         author_title: Your title
         # Author's current location
@@ -270,7 +271,7 @@ widgets:
         # Whether to collapse sub-headings when they are out-of-view
         collapsed: true
         # Maximum level of headings to show (1-6)
-        depth: 3
+        depth: 6
     # Recommendation links widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
@@ -288,17 +289,17 @@ widgets:
     # Recent posts widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
-        position: left
+        position: right
         type: recent_posts
     # Archives widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
-        position: left
+        position: right
         type: archives
     # Tags widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
-        position: left
+        position: right
         type: tags
         # How to order tags. For example 'name' to order by name in ascending order, and '-length' to order by number of posts in each tags in descending order
         order_by: name
@@ -441,3 +442,14 @@ includes:
                 theme="#3273dc">
             </meting-js>
           </div>
+
+# 标准 JSON 内容配置
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false    # 设为 false，首页加载速度会快很多
+    sticky: true  # 核心：显式要求抓取 sticky 字段

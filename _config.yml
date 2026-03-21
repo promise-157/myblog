@@ -44,9 +44,9 @@ prismjs:
   line_number: true
   tab_replace: ''
 index_generator:
-  path: ''
+  path: 'blog'  # 仅修改这一行，文章的 URL 依然保持原样
   per_page: 10
-  order_by: '-date'
+  order_by: '-sticky -date'
 default_category: uncategorized
 category_map: null
 tag_map: null
@@ -86,3 +86,21 @@ encrypt:
     - {name: private, password: "123456"} # 只要文章标签含 private，就会用这个密码
   wrong_pass_message: "密码错误，请重试。"
   wrong_hash_message: "内容校验失败。"
+
+widgets:
+  -
+    type: profile # 个人信息
+    position: left
+  -
+    type: categories # 分类（层级管理）
+    position: left
+  -
+    type: toc # 目录（长文管理必备）
+    position: right
+    index: true
+    collapsed: false # 是否默认折叠
+  -
+    type: recent_posts # 最近文章
+    position: right
+
+# 标准 JSON 内容配置

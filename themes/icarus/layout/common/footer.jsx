@@ -1,4 +1,4 @@
-const { Component, Fragment } = require('inferno');
+const { Component, Fragment } = require('inferno'); // 这里增加了 Fragment
 const { cacheComponent } = require('hexo-component-inferno/lib/util/cache');
 
 class Footer extends Component {
@@ -60,44 +60,22 @@ class Footer extends Component {
                     </div>
                 </div>
             </footer>
-
-            {/* --- 智能背景音乐系统开始 --- */}
-            {/* 1. 加载核心资源 */}
+            {/* 这里的音乐播放器代码会被注入到页面最底部 */}
             <link rel="stylesheet" href="https://cdn.staticfile.net/aplayer/1.10.1/APlayer.min.css" />
             <script src="https://cdn.staticfile.net/aplayer/1.10.1/APlayer.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
-
-            {/* 2. 隐藏的播放器容器 */}
-            <div id="music-storage" style={{ display: 'none' }}></div>
-
-            {/* 3. 核心探测脚本：兼容普通文章与加密文章 */}
-            <script dangerouslySetInnerHTML={{ __html: `
-                (function() {
-                    var retryCount = 0;
-                    var checkMusic = setInterval(function() {
-                        // 探测文章中是否存在开启音乐的“暗号”标签
-                        var trigger = document.getElementById('enable-music');
-                        if (trigger) {
-                            clearInterval(checkMusic);
-                            var storage = document.getElementById('music-storage');
-                            // 动态注入 MetingJS 标签，确保在解密后或页面加载后初始化
-                            storage.innerHTML = '<meting-js server="netease" type="playlist" id="13312157228" fixed="false" autoplay="true" loop="all" order="random" preload="auto"></meting-js>';
-                            
-                            // 浏览器策略：监听第一次点击以启动音频上下文
-                            document.addEventListener('click', function() {
-                                var el = document.querySelector('meting-js');
-                                if (el && el.aplayer && el.aplayer.paused) {
-                                    el.aplayer.play();
-                                }
-                            }, { once: true });
-                        }
-                        // 如果 10 秒内都没发现暗号（比如在首页），则停止探测
-                        if (retryCount++ > 20) clearInterval(checkMusic);
-                    }, 500);
-                })();
-            ` }} />
-            {/* --- 智能背景音乐系统结束 --- */}
-
+            <meting-js
+                server="netease"
+                type="playlist"
+                id="13312157228"
+                fixed="true"
+                autoplay="false"
+                loop="all"
+                order="random"
+                preload="auto"
+                list-folded="true"
+                theme="#3273dc">
+            </meting-js>
         </Fragment>;
     }
 }

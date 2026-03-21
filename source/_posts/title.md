@@ -1,10 +1,15 @@
 ---
-title: title
+title: 第一篇笔记：如何使用hexo(vscode)
 date: 2026-03-19 19:18:43
 tags:
+  - 教程
+  - hexo
+categories:
+  - 教程
+sticky: 10
+toc: true
 ---
 
-@[toc]
 
 - [VScode配置hexo笔记 一 配置与预备知识](#vscode配置hexo笔记-一-配置与预备知识)
   - [本次踩坑](#本次踩坑)
