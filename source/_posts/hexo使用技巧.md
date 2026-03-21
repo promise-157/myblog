@@ -280,3 +280,20 @@ layout: false
 
 ### 新增模板化脚本创建功能
 在scaffolds里面创建好自己的模板leetcode然后调用create_post.bat leetcode。不带参数则是默认方法。
+
+### 文章间跳转
+1. 只要你在两篇文章的 Front-matter 里写了相同的 tags：Icarus 会自动在文章底部展示 “相关文章” 挂件。
+2. {% post_link 测试2 %}即可，可以使用这个方法手动创建md文件的目录。
+
+### 创建书页
+1. source下的md文件为home页，home页就是一开始的页
+2. posts文件夹为index生成的页，index_generator指定的这个路径为空则是默认是home页，我这里自己给他设置为blog页。
+3. 当你调用hexo new page时会新生成一个文件夹在source里，为一个新的页。newh出来的页需要配置进menu里才能在网站看见，不然就只能通过**网址访问**，注意这里是**可以访问的。**
+4.     menu:
+        Home: /
+        Blog: /blog/
+        Archives: /archives
+        Categories: /categories
+        Tags: /tags
+        About: /about
+在这里设置页的路径，到时候会访问对应文件。/默认为source文件夹，到时候解析的时候是另外一个路径名字。

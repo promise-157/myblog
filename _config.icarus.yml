@@ -106,6 +106,7 @@ navbar:
     # Navigation menu items
     menu:
         Home: /
+        leetcode: /leetcode-list/
         Blog: /blog/
         Archives: /archives
         Categories: /categories
