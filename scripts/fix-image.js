@@ -1,33 +1,25 @@
 const path = require('path');
 
 hexo.extend.filter.register('before_post_render', function(data) {
-    // 1. 打印：证明脚本被加载并开始处理文章
-    console.log('====================================');
-    console.log('[调试] 正在处理文章:', data.title);
-
+    // 获取当前文章的文件名（不含后缀）
     const postName = path.basename(data.source, '.md');
     
-    // 2. 更加宽容的正则表达式
-    // 匹配：![](文件名/图.png) 或 ![](./文件名/图.png) 或 ![](/文件名/图.png)
-    const imgRegex = /!\[.*?\]\((?:\.\/|\/)?([^)]+?)\/([^)]+?)\)/g;
+    // 正则升级：匹配 ![](任意路径/文件名.png)
+    // 捕获组 1: 路径部分, 捕获组 2: 图片文件名
+    const imgRegex = /!\[.*?\]\((?:\.\.\/|\.\/|\/)*([^/)]+?)\/([^)]+?)\)/g;
 
-    // 记录匹配次数
     let matchCount = 0;
 
-    data.content = data.content.replace(imgRegex, (match, folderName, fileName) => {
-        // 只有文件夹名和文件名一致，或者是子文件夹时才转换
-        if (folderName === postName || folderName.includes(postName)) {
+    data.content = data.content.replace(imgRegex, (match, fullPath, fileName) => {
+        // 核心逻辑：只要路径的最后一段是文章名，或者路径包含文章名
+        // 这样无论是在 _posts/ 还是 _posts/leetcode/ 都能匹配上
+        if (fullPath.endsWith(postName) || fullPath.includes('/' + postName)) {
             matchCount++;
             const newTag = `{% asset_img "${fileName}" %}`;
-            console.log(`  [转换成功] ${match}  =>  ${newTag}`);
             return newTag;
         }
         return match;
     });
 
-    if (matchCount === 0) {
-        console.log('  [注意] 此文章未发现匹配路径的图片。');
-    }
-    
     return data;
 });

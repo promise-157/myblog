@@ -277,3 +277,6 @@ layout: false
 加密
 2. sticky: number，越大优先级置顶顺序越高
 3. toc: true
+
+### 新增模板化脚本创建功能
+在scaffolds里面创建好自己的模板leetcode然后调用create_post.bat leetcode。不带参数则是默认方法。
