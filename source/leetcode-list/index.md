@@ -7,5 +7,7 @@ widgets:
     - position: left
       type: toc     # 这样左边就只有目录，看起来非常像电子书
 ---
-### {% post_link 测试2 %}
+> 本页为leetcode刷题的导航页，方便后续回顾,只记录印象较深的
+## hot100
+### {% post_link title %}
 ### 待完善

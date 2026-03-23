@@ -11,6 +11,7 @@ lc_difficulty: Easy
 lc_category: []
 lc_status: Solved
 sticky: 0
+excerpt: true
 ---
 
 ### 💡 解题思路

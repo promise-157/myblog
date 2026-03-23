@@ -104,3 +104,39 @@ widgets:
     position: right
 
 # 标准 JSON 内容配置
+live2d:
+
+  enable: true
+
+  scriptFrom: local
+
+
+  pluginRootPath: node_modules/
+
+  pluginJsPath: lib/
+
+  pluginModelPath: assets/
+
+  tagMode: false
+
+  debug: false
+
+  model:
+
+    use: live2d-widget-model-hijiki
+
+  display:
+
+    position: right
+
+    width: 150
+
+    height: 300
+
+  mobile:
+
+    show: true
+
+  react:
+
+    opacity: 0.7

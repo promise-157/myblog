@@ -135,6 +135,12 @@ footer:
             url: https://github.com/ppoffice/hexo-theme-icarus
 # Article related configurations
 article:
+# 是否在首页文章卡片显示摘要
+    excerpt: false
+    # 自动截取的长度（设为 200 左右比较美观）
+
+    # 是否显示“阅读更多”按钮
+    read_more: true
     # Code highlight settings
     highlight:
         # Code highlight themes
@@ -454,3 +460,4 @@ jsonContent:
     path: true
     text: false    # 设为 false，首页加载速度会快很多
     sticky: true  # 核心：显式要求抓取 sticky 字段
+

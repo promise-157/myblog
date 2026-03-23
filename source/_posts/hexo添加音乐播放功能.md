@@ -11,12 +11,8 @@ categories:
 date: 2026-03-20 20:17:31
 description:
 toc: true
+excerpt: 详情请点击read more
 ---
-- [生成底部播放器界面](#生成底部播放器界面)
-- [背景音乐播放](#背景音乐播放)
-- [进入特定md博文播放音乐](#进入特定md博文播放音乐)
-- [三种功能切换](#三种功能切换)
-- [GitHub网页未生效问题](#github网页未生效问题)
 
 <div id="enable-music"></div>
 

@@ -12,6 +12,7 @@ date: 2026-03-21 14:26:01
 description:
 toc: true
 sticky: 20
+excerpt: 详情请点击read more
 ---
 
 ## 记录对hexo的使用优化过程和教程
@@ -283,7 +284,7 @@ layout: false
 
 ### 文章间跳转
 1. 只要你在两篇文章的 Front-matter 里写了相同的 tags：Icarus 会自动在文章底部展示 “相关文章” 挂件。
-2. {% post_link 测试2 %}即可，可以使用这个方法手动创建md文件的目录。
+2. {% post_link title %}即可，可以使用这个方法手动创建md文件的目录。
 
 ### 创建书页
 1. source下的md文件为home页，home页就是一开始的页
@@ -297,3 +298,21 @@ layout: false
         Tags: /tags
         About: /about
 在这里设置页的路径，到时候会访问对应文件。/默认为source文件夹，到时候解析的时候是另外一个路径名字。
+
+### 设置文章预览
+在配置文件设置的东西都需要在具体博文再设置打开，否则默认关闭。
+```
+excerpt: true。
+ 是否在首页文章卡片显示摘要
+    excerpt: true
+    # 自动截取的长度（设为 200 左右比较美观）
+    auto_excerpt: 200
+    # 是否显示“阅读更多”按钮
+    read_more: true
+```
+1. 经测试auto_excerpt功能无效。
+2. 解决方法一，直接使用excerpt：具体的摘要内容
+3. 解决方法二，在正文写一段摘要，在后面放上```<!-- more -->```，这样做的话就不要加excerpt了。
+
+### 看板娘设置
+参考博客为：<https://kailalan.github.io/>

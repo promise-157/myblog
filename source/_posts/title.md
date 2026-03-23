@@ -8,6 +8,7 @@ categories:
   - 教程
 sticky: 10
 toc: true
+excerpt: 详情请点击read more
 ---
 
 
