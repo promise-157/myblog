@@ -9,6 +9,8 @@ categories:
 sticky: 10
 toc: true
 excerpt: 详情请点击read more
+cover: /gallery/defaultCover1.png
+thumbnail: /gallery/defaultThumbnail1.png
 ---
 
 
