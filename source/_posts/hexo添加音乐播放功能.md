@@ -12,8 +12,7 @@ date: 2026-03-20 20:17:31
 description:
 toc: true
 excerpt: 详情请点击read more
-cover: /gallery/defaultCover1.png
-thumbnail: /gallery/defaultThumbnail1.png
+
 ---
 
 <div id="enable-music"></div>
