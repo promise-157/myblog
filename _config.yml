@@ -111,7 +111,7 @@ live2d:
   scriptFrom: local
 
 
-  pluginRootPath: node_modules/
+  pluginRootPath: live2d_models/
 
   pluginJsPath: lib/
 

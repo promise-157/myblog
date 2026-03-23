@@ -316,3 +316,4 @@ excerpt: true。
 
 ### 看板娘设置
 参考博客为：<https://kailalan.github.io/>
+1. 又到老生常谈的问题，md这npm包上传不到github上啊我去。
