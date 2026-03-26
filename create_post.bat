@@ -1,70 +1,72 @@
 @echo off
-chcp 65001 >nul
 setlocal enabledelayedexpansion
+chcp 65001 >nul
 
-:: --- 配置区 ---
-set LAYOUT=post
-if "%1"=="leetcode" (
-    set LAYOUT=leetcode
-    echo [模式] 已切换为 LeetCode 刷题模式
-) else if not "%1"=="" (
-    set LAYOUT=%1
-    echo [模式] 已切换为自定义模式: %1
-)
+set /p "U_CAT=[1/3] 输入大类 (回车则为未分类): "
+set /p "U_LYT=[2/3] 使用模板 (回车则用 post): "
+set /p "U_TTL=[3/3] 标题名字 (回车则用时间戳): "
+echo ========================================
 
-:: 1. 输入标题
-set /p post_title="请输入标题 (直接回车用时间戳): "
-if "!post_title!"=="" (
-    set post_title=%date:~0,4%%date:~5,2%%date:~8,2%%time:~0,2%%time:~3,2%
-)
+if "%U_LYT%"=="" set "U_LYT=post"
+set "STAMP=%date:~0,4%%date:~5,2%%date:~8,2%_%time:~0,2%%time:~3,2%"
+set "STAMP=%STAMP: =0%"
+set "STAMP=%STAMP::=%"
 
-:: 2. 执行 hexo new (指定布局)
-echo [Hexo] 正在使用模板 [%LAYOUT%] 创建文章: %post_title%...
-call hexo new %LAYOUT% "%post_title%"
+set "FINAL_TITLE=%U_TTL%"
+if "%FINAL_TITLE%"=="" set "FINAL_TITLE=%STAMP%"
+set "FINAL_TITLE=%FINAL_TITLE: =-%"
 
-:: 3. 定位文件路径并同步移动资产文件夹
-set safe_title=%post_title: =-%
-set source_md=source\_posts\%safe_title%.md
-set source_dir=source\_posts\%safe_title%
+set "FINAL_CAT=%U_CAT%"
+if "%FINAL_CAT%"=="" set "FINAL_CAT=未分类"
 
-if "%LAYOUT%"=="leetcode" (
-    :: 创建 leetcode 子目录
-    if not exist "source\_posts\leetcode" mkdir "source\_posts\leetcode"
-    
-    :: 关键修正：同时移动文章和对应的同名文件夹
-    if exist "!source_md!" move "!source_md!" "source\_posts\leetcode\" >nul
-    if exist "!source_dir!" move "!source_dir!" "source\_posts\leetcode\" >nul
-    
-    set target_file=source\_posts\leetcode\%safe_title%.md
+if "%U_CAT%"=="" (
+    set "REL_PATH=%FINAL_TITLE%/%FINAL_TITLE%.md"
 ) else (
-    set target_file=!source_md!
+    set "REL_PATH=%U_CAT%/%FINAL_TITLE%/%FINAL_TITLE%.md"
 )
+
+echo [Hexo] 正在创建文章...
+call hexo new "%U_LYT%" "%FINAL_TITLE%" --path "%REL_PATH%"
+
+set "target_file=source\_posts\%REL_PATH:/=\%"
 
 if not exist "%target_file%" (
-    echo [错误] 找不到生成的文件: %target_file%
+    echo [错误] 找不到文件: "%target_file%"
     pause
     exit /b
 )
 
-:: 4. 随机图片分配 (保持你原有的逻辑)
 set /a random_num=%random% %% 5 + 1
-set cover_path=/gallery/defaultCover%random_num%.png
-set thumb_path=/gallery/defaultThumbnail%random_num%.png
+set "cover_path=/gallery/defaultCover%random_num%.png"
+set "thumb_path=/gallery/defaultThumbnail%random_num%.png"
 
-:: 5. 替换占位符
-set temp_file=%target_file%.tmp
+echo [处理] 正在写入数据...
+set "temp_file=%target_file%.tmp"
+set "in_cat=0"
+
 (for /f "usebackq delims=" %%i in ("%target_file%") do (
     set "line=%%i"
-    set "line=!line:COVER_PLACEHOLDER=%cover_path%!"
-    set "line=!line:THUMBNAIL_PLACEHOLDER=%thumb_path%!"
-    echo !line!
+    
+    :: 封面替换
+    if not "!line:COVER_PLACEHOLDER=!"=="!line!" set "line=!line:COVER_PLACEHOLDER=%cover_path%!"
+    if not "!line:THUMBNAIL_PLACEHOLDER=!"=="!line!" set "line=!line:THUMBNAIL_PLACEHOLDER=%thumb_path%!"
+    
+    :: 状态切换：进入 categories 时打开开关，进入 tags 时关闭开关
+    echo !line! | findstr /C:"categories:" >nul && set "in_cat=1"
+    echo !line! | findstr /C:"tags:" >nul && set "in_cat=0"
+    
+    :: 只有在分类区才替换
+    if "!in_cat!"=="1" (
+        set "line=!line:未分类=%FINAL_CAT%!"
+    )
+
+    if "!line!"=="" (echo.) else (echo !line!)
 )) > "%temp_file%"
 
 move /y "%temp_file%" "%target_file%" >nul
 
-
 echo ---------------------------------------
-echo [成功] 文章已创建: %target_file%
-echo [布局] 使用模板: %LAYOUT%
+echo [成功] 文章已就绪: %FINAL_TITLE%
+echo [大类] %FINAL_CAT%
 echo ---------------------------------------
 pause

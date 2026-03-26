@@ -317,3 +317,126 @@ excerpt: true。
 ### 看板娘设置
 参考博客为：<https://kailalan.github.io/>
 1. 又到老生常谈的问题，md这npm包上传不到github上啊我去。
+
+### 优化图片和创建博文体验
+> 老实讲，这个内容不应该出现在使用技巧这的，因为因人而已，我写的脚本也十分臃肿（ai写的）
+> 但是花了2个多小时才从ai口中敲出来的代码实在是不想以后忘记了。
+>功能为：优化图片识别路径方法，同一级目录下的同名文件夹和同一级目录都可以识别。，那个asset啥的要保持true。
+```
+@echo off
+setlocal enabledelayedexpansion
+chcp 65001 >nul
+
+set /p "U_CAT=[1/3] 输入大类 (回车则为未分类): "
+set /p "U_LYT=[2/3] 使用模板 (回车则用 post): "
+set /p "U_TTL=[3/3] 标题名字 (回车则用时间戳): "
+echo ========================================
+
+if "%U_LYT%"=="" set "U_LYT=post"
+set "STAMP=%date:~0,4%%date:~5,2%%date:~8,2%_%time:~0,2%%time:~3,2%"
+set "STAMP=%STAMP: =0%"
+set "STAMP=%STAMP::=%"
+
+set "FINAL_TITLE=%U_TTL%"
+if "%FINAL_TITLE%"=="" set "FINAL_TITLE=%STAMP%"
+set "FINAL_TITLE=%FINAL_TITLE: =-%"
+
+set "FINAL_CAT=%U_CAT%"
+if "%FINAL_CAT%"=="" set "FINAL_CAT=未分类"
+
+if "%U_CAT%"=="" (
+    set "REL_PATH=%FINAL_TITLE%/%FINAL_TITLE%.md"
+) else (
+    set "REL_PATH=%U_CAT%/%FINAL_TITLE%/%FINAL_TITLE%.md"
+)
+
+echo [Hexo] 正在创建文章...
+call hexo new "%U_LYT%" "%FINAL_TITLE%" --path "%REL_PATH%"
+
+set "target_file=source\_posts\%REL_PATH:/=\%"
+
+if not exist "%target_file%" (
+    echo [错误] 找不到文件: "%target_file%"
+    pause
+    exit /b
+)
+
+set /a random_num=%random% %% 5 + 1
+set "cover_path=/gallery/defaultCover%random_num%.png"
+set "thumb_path=/gallery/defaultThumbnail%random_num%.png"
+
+echo [处理] 正在写入数据...
+set "temp_file=%target_file%.tmp"
+set "in_cat=0"
+
+(for /f "usebackq delims=" %%i in ("%target_file%") do (
+    set "line=%%i"
+    
+    :: 封面替换
+    if not "!line:COVER_PLACEHOLDER=!"=="!line!" set "line=!line:COVER_PLACEHOLDER=%cover_path%!"
+    if not "!line:THUMBNAIL_PLACEHOLDER=!"=="!line!" set "line=!line:THUMBNAIL_PLACEHOLDER=%thumb_path%!"
+    
+    :: 状态切换：进入 categories 时打开开关，进入 tags 时关闭开关
+    echo !line! | findstr /C:"categories:" >nul && set "in_cat=1"
+    echo !line! | findstr /C:"tags:" >nul && set "in_cat=0"
+    
+    :: 只有在分类区才替换
+    if "!in_cat!"=="1" (
+        set "line=!line:未分类=%FINAL_CAT%!"
+    )
+
+    if "!line!"=="" (echo.) else (echo !line!)
+)) > "%temp_file%"
+
+move /y "%temp_file%" "%target_file%" >nul
+
+echo ---------------------------------------
+echo [成功] 文章已就绪: %FINAL_TITLE%
+echo [大类] %FINAL_CAT%
+echo ---------------------------------------
+pause
+```
+
+```
+const path = require('path');
+const fs = require('fs-extra');
+
+hexo.extend.filter.register('before_post_render', function(data) {
+    const postSrcDir = path.dirname(data.full_source);
+    const postName = path.basename(data.source, '.md');
+    // 关键：读取你的 root 配置 (/myblog/)
+    const blogRoot = hexo.config.root || '/';
+
+    // 正则：匹配所有 ![](...)，捕获组 1 为路径/文件名
+    const imgRegex = /!\[.*?\]\((?:\.\/)?(?:([^/)]+)\/)?([^)]+?)\)/g;
+
+    data.content = data.content.replace(imgRegex, (match, pathPart, fileName) => {
+        // 判定：同级图片 (pathPart为空) 或 同名文件夹图片 (pathPart === postName)
+        if (!pathPart || pathPart === postName) {
+            
+            // 寻找物理原图
+            let srcPath = path.join(postSrcDir, postName, fileName);
+            if (!fs.existsSync(srcPath)) {
+                srcPath = path.join(postSrcDir, fileName);
+            }
+
+            if (fs.existsSync(srcPath)) {
+                // 1. 强制搬运图片到 public 对应位置
+                // data.path 已经是 :year/:month/:day/:title/ 结构
+                const destPath = path.join(hexo.public_dir, data.path, fileName);
+                fs.ensureDirSync(path.dirname(destPath));
+                fs.copySync(srcPath, destPath);
+
+                // 2. 生成带 root 前缀的路径，解决子目录虚无问题
+                const webPath = path.join(blogRoot, data.path, fileName).replace(/\\/g, '/');
+                
+                // console.log(`[同步成功] ${postName} -> ${webPath}`);
+                return `<img src="${webPath}" alt="${fileName}">`;
+            }
+        }
+        return match;
+    });
+
+    return data;
+});
+```
