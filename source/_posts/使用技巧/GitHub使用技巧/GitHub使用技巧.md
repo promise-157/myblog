@@ -26,3 +26,29 @@ vscode环境：
 4. 切换分支前记得push一下，你不push，git可不敢擅自抛弃这些修改。
 5. 切换分支中是origin/前缀的代表远端分支，没有的代表本地分支。
 6. 合并分支可以ctrl shift P 搜索git merge或者去侧边栏慢慢找，是有的。
+
+git bash指令：
+```
+# 确保你在主分支
+git checkout main
+# 创建并同时切换到新分支
+git checkout -b feat-my-feature
+# 将修改的文件放入暂存区 ( . 代表当前目录下所有改动)
+git add .
+# 正式保存到本地仓库，并写下备注
+git commit -m "feat: add i2c module"
+# 第一次推送新分支需要关联远程仓库 (origin)
+git push -u origin feat-my-feature
+# 1. 切回主分支
+git checkout main
+# 2. 拉取云端最新代码（防止别人改了你没同步）
+git pull origin main
+# 3. 把功能分支合进来
+git merge feat-my-feature
+# 4. 推送到云端 main
+git push origin main
+# 删除本地分支
+git branch -d feat-my-feature
+# (可选) 删除 GitHub 云端的远程分支
+git push origin --delete feat-my-feature
+```
