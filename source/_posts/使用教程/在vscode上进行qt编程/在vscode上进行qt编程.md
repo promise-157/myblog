@@ -49,3 +49,42 @@ target_link_libraries(MyQtApp PRIVATE
     Qt5::Network
 )
 ```
+# 交叉编译在vscode上的使用
+1. 先去正点原子资料里安装好交叉编译器：fsl-imx-x11-glibc-x86_64-meta-toolchain-qt5-cortexa7hf-neon-toolchain-4.1.15-2.1.0_20241230.sh
+2. 然后在vscode，使用ctrl shift p调出指令，选择kits为交叉编译工具。如果你想要用正点原子source环境变量实现指定编译目标的话需要选未指定。然后他会使用环境变量，但是我没试过就不细说了。
+3. 修改cmake：声明sysroot变量。需要写在project前面
+```
+set(SDK_TARGET_SYSROOT "/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi")
+set(CMAKE_SYSROOT ${SDK_TARGET_SYSROOT})
+set(CMAKE_FIND_ROOT_PATH ${SDK_TARGET_SYSROOT})
+project(MyQtApp)
+
+# 指向交叉编译环境中的 Qt 配置路径
+set(Qt5_DIR "${CMAKE_SYSROOT}/usr/lib/cmake/Qt5")#这个不知道有没有必要，我也懒得删除懒得验证了。
+```
+4. 在setting.json指定编译工具链：我的理解是前面指定的是编译器路径，这里声明的是什么语言对应什么编译工具，毕竟有gcc和g++两种。这里顺便把clangd也改了，不改的话也能跳转qt的库函数但是好像跳转不到arm库的定义，但是都能编译成功。
+```
+{
+    "clangd.path": "/usr/bin/clangd",
+    /* 核心：添加 clangd 启动参数 */
+    "clangd.arguments": [
+        "--compile-commands-dir=build",
+        "--query-driver=/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi*",
+        "--header-insertion=never",
+        "--clang-tidy",
+        "--all-scopes-completion",
+        "--completion-style=detailed"
+    ],
+
+    "cmake.configureSettings":{
+       // 因为我们把逻辑写进 CMakeLists 了，这里不需要指向 .cmake 文件了
+        // 但为了保险，可以把 Sysroot 也传进去
+        "CMAKE_SYSROOT": "/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi"
+    },
+    "cmake.environment": {
+        "CFLAGS": "-march=armv7-a -mfloat-abi=hard -mfpu=neon -mtune=cortex-a7",
+        "CXXFLAGS": "-march=armv7-a -mfloat-abi=hard -mfpu=neon -mtune=cortex-a7"
+    }
+
+}
+```
