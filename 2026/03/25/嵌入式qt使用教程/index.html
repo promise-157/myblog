@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>嵌入式qt使用教程 - Hexo</title><link rel="manifest" href="/myblog/manifest.json"><meta name="application-name" content="Hexo"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Hexo"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="详情请点击read more"><meta property="og:type" content="blog"><meta property="og:title" content="嵌入式qt使用教程"><meta property="og:url" content="https://promise-157.github.io/myblog/2026/03/25/%E5%B5%8C%E5%85%A5%E5%BC%8Fqt%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/"><meta property="og:site_name" content="Hexo"><meta property="og:description" content="详情请点击read more"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://promise-157.github.io/myblog/gallery/defaultCover5.png"><meta property="article:published_time" content="2026-03-25T14:44:28.000Z"><meta property="article:modified_time" content="2026-04-09T11:35:12.107Z"><meta property="article:author" content="John Doe"><meta property="article:tag" content="qt"><meta property="article:tag" content="嵌入式"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://promise-157.github.io/myblog/gallery/defaultCover5.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://promise-157.github.io/myblog/2026/03/25/%E5%B5%8C%E5%85%A5%E5%BC%8Fqt%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/"},"headline":"嵌入式qt使用教程","image":["https://promise-157.github.io/myblog/gallery/defaultCover5.png"],"datePublished":"2026-03-25T14:44:28.000Z","dateModified":"2026-04-09T11:35:12.107Z","author":{"@type":"Person","name":"John Doe"},"publisher":{"@type":"Organization","name":"Hexo","logo":{"@type":"ImageObject","url":"https://promise-157.github.io/img/logo.svg"}},"description":"详情请点击read more"}</script><link rel="canonical" href="https://promise-157.github.io/myblog/2026/03/25/%E5%B5%8C%E5%85%A5%E5%BC%8Fqt%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/"><link rel="icon" href="/myblog/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/myblog/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/myblog/"><img src="/myblog/img/logo.svg" alt="Hexo" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/myblog/">Home</a><a class="navbar-item" href="/myblog/leetcode-list/">leetcode</a><a class="navbar-item" href="/myblog/blog/">Blog</a><a class="navbar-item" href="/myblog/archives">Archives</a><a class="navbar-item" href="/myblog/categories">Categories</a><a class="navbar-item" href="/myblog/tags">Tags</a><a class="navbar-item" href="/myblog/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="/myblog/gallery/defaultCover5.png" alt="嵌入式qt使用教程"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2026-03-25T14:44:28.000Z" title="3/25/2026, 2:44:28 PM">2026-03-25</time></span><span class="level-item">Updated&nbsp;<time dateTime="2026-04-09T11:35:12.107Z" title="4/9/2026, 11:35:12 AM">2026-04-09</time></span><span class="level-item"><a class="link-muted" href="/myblog/categories/%E6%95%99%E7%A8%8B/">教程</a></span><span class="level-item">22 minutes read (About 3328 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">嵌入式qt使用教程</h1><div class="content"><h1>安装</h1>
+<ol>
+<li>在linux端配置好代理后，执行<code>wget https://download.qt.io/archive/qt/5.12/5.12.9/qt-opensource-linux-x64-5.12.9.run</code></li>
+<li>大文件下载可能会网络波动导致失败，重新下载指令如下</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(1)不关代理。wget -c --no-check-certificate https://download.qt.io/archive/qt/5.12/5.12.9/qt-opensource-linux-x64-5.12.9.run</span><br><span class="line">(2)关代理。unset https_proxy</span><br><span class="line">unset http_proxy</span><br><span class="line"># 然后再尝试断点续传</span><br><span class="line">wget -c https://download.qt.io/archive/qt/5.12/5.12.9/qt-opensource-linux-x64-5.12.9.run</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>趁现在去注册qt账号，有账号的回想一下，qt官网为：<a target="_blank" rel="noopener" href="https://www.qt.io">https://www.qt.io</a></li>
+<li>执行命令开始安装，</li>
+</ol>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod +x qt-opensource-linux-x64-5.12.9.run</span><br><span class="line">sudo ./qt-opensource-linux-x64-5.12.9.run</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>配置如下，<img src="/myblog/2026/03/25/嵌入式qt使用教程/image.png" alt="image.png"></li>
+</ol>
+<h2 id="wsl问题">wsl问题</h2>
+<p>如果你是win10，默认没有图形化界面的。</p>
+<ol>
+<li>下载VcXsrv <a target="_blank" rel="noopener" href="https://sourceforge.net/projects/vcxsrv/files/latest/download%E3%80%82">https://sourceforge.net/projects/vcxsrv/files/latest/download。</a></li>
+<li>在桌面找到安装好的图标后启动，选择 Multiple windows，Display number 输入 0。然后选择 Start no client。勾选勾选 &quot;Disable access control&quot;即可。</li>
+<li>推荐安装依赖以及环境变量</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt install -y libxcb-xinerama0</span><br><span class="line">下面两句是写入bashrc的</span><br><span class="line">export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk &#x27;&#123;print $2&#125;&#x27;):0</span><br><span class="line">alias qtcreator=&#x27;/opt/Qt5.12.9/Tools/QtCreator/bin/qtcreator &amp;&#x27;</span><br><span class="line"></span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>执行qtcreator即可调出窗口。</li>
+</ol>
+<h2 id="中文">中文</h2>
+<p>在tool opions Environment interface，这里路径下设置。<br>
+至于输入中文，我懒得折腾了，在windows下复制过去吧。</p>
+<h1>创建工程</h1>
+<blockquote>
+<p>参考文档为正点原子的qt教程，下载路径为imx6ull下的参考资料。</p>
+</blockquote>
+<h2 id="相关名词解析">相关名词解析</h2>
+<ol>
+<li>qmake：生成makefile编译的项目</li>
+<li>基类选择自行去了解，新手默认即可，嵌入式开发一般用没有状态栏的Qwidget</li>
+<li>translation file可读的翻译软件极少用到点击下一步即可。</li>
+<li>工程目录中头文件和源文件就不多介绍了，form文件夹指的是ui资源，采用xml语言到时候编译的时候会生成对应的代码，不能手动编辑双击跳转到图形化界面编辑。pro后缀的文件是项目管理文件后续有大用。</li>
+<li>ui设计页面左边是控件选择，中间是效果，右边是类和类的属性显示</li>
+</ol>
+<h2 id="hello-world">hello world</h2>
+<ol>
+<li>双击ui软件，找到label控件，拖动，输入文字即可。教程似乎没讲但是ctrl+s似乎有用。</li>
+<li>回到编辑页面点击左下角绿色开始按键，开始编译，底部编译输出按键可以看结果。</li>
+<li>参考文档说会遇到sudo apt-get install libglu1-mesa-dev问题但是我一次成功了，遇到的是warning: implicitly-declared ‘QVariant::Private&amp;…，这个是警告，意思是qt版本有点老了，可以忽略，有一说一警告标红色干嘛。。。</li>
+</ol>
+<h2 id="信号与槽">信号与槽</h2>
+<h3 id="简述">简述</h3>
+<ol>
+<li>信号连接到槽上，当对象发出信号则对应连接的槽就被触发执行。</li>
+<li>要设置这个需要进入signal/slots模式，在ui设计页面的中间上方按键，如果要退出点击左边按键edit widgets即可。</li>
+<li>进入信号槽编辑模式后，点击拖到控件，会弹出页面，右边是对象的槽函数，在初始main函数中只有QMainWindow的槽函数，左边是该控件的信号，选择匹配即可，比如按键的click()信号匹配close槽。这里的信号和槽他们都是基础父类得来的因此需要在匹配页面把显示基础打开。</li>
+<li>编写槽函数，在编辑页面左键转到槽，跳到对应的槽函数，比如close功能就需要this-&gt;close();</li>
+</ol>
+<h3 id="详述">详述</h3>
+<ol>
+<li>槽函数是自动执行的，目标函数去执行槽，所以之前体验的教程中是编辑mainwindow的函数，信号与槽的绑定函数为：<code>QObject::connect(sender, SIGNAL(signal()), receiver, SLOT(slot()));</code>  ,传入参数为：信号发射的对象，信号，接收信号的对象，槽</li>
+<li>连接多个槽的执行顺序按连接时的顺序来</li>
+<li>信号可以连接信号,<code>connect(pushButton, SIGNAL(objectNameChanged(QString)),this, SIGNAL(windowTitelChan ged(QString)));</code></li>
+<li><strong>在使用信号与槽的类中，必须在类的定义中加入宏 Q_OBJECT</strong></li>
+<li>发射信号如同调用代码，有阻塞效果，执行完毕才到后面的语句。</li>
+<li>有断开信号和槽连接的方法，disconnect，一般不咋用吧</li>
+</ol>
+<h4 id="取消ui编辑界面的代码编写">取消ui编辑界面的代码编写</h4>
+<ol>
+<li>创建项目时不生产ui文件即可。</li>
+<li>信号无需定义，只需要声明，为了在QMainWindow类添加信号，打开MainWindow的头文件。之前说的那个宏已经默认生成了，没有的自己添加。  因为信号只是起到触发作用真正起作用的函数是槽函数</li>
+<li>在类中写入</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">signals:</span><br><span class="line">/* 声明一个信号，只需声明，无需定义</span><br><span class="line">void pushButtonTextChanged();</span><br></pre></td></tr></table></figure>
+<p>这个signals写法是和public同级的，这是引入了moc的工具，他最终是把这个处理成public，这个工具的其他作用还有处理那个 Q_OBJECT宏。<br>
+4. 显示mainwindow中会有很多其他的类对象，而信号的声明正式声明这些类对象的函数。因此还需要引入相应对象的头文件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/* 引入 QPushButton */</span><br><span class="line">#include &lt;QPushButton&gt;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>信号函数和槽函数的参数和返回值要一样，从抽象概念理解上信号发射和接收方当然要一样，<br>
+从代码理解来讲，实际上连接就是把信号发来的参数当参数传给了槽函数，如果不一样会报错。</li>
+<li>定义槽函数需要先创建好绑定对象，然后再在目标执行槽函数的主体上创建槽函数。代码为：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public slots:</span><br><span class="line">/* 声明一个槽函数 */</span><br><span class="line">void changeButtonText();</span><br><span class="line">/* 声明按钮点击的槽函数 */</span><br><span class="line">void pushButtonClicked();</span><br><span class="line">private:</span><br><span class="line">/* 声明一个对象 pushButton */</span><br><span class="line">QPushButton *pushButton;</span><br></pre></td></tr></table></figure>
+<p>定义了公有属性的槽函数。<br>
+7. 这样可以发现在同一份头文件里又有信号又有槽，笔者在这里有些迷糊了，实际上最开始声明的那个信号是mainwindow的信号，如果只是把槽和类绑定的话不需要声明信号。<br>
+8. 个人c++语法拾遗，实例化对象一定是在cpp文件里实例化的，在头文件里只是声明。<br>
+9. 接下来实例化对象和实现具体的槽函数即可。打开cpp文件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;mainwindow.h</span><br><span class="line">MainWindow::MainWindow(QWidget *parent)</span><br><span class="line">: QMainWindow(parent)</span><br><span class="line">&#123;</span><br><span class="line">/* 设置窗体的宽为 800,高为 480 */</span><br><span class="line">this-&gt;resize(800,480);</span><br><span class="line">/* 实例化 pushButton 对象 */</span><br><span class="line">pushButton = new QPushButton(this);</span><br><span class="line">/* 调用 setText()方法设定按钮的文本 */</span><br><span class="line">pushButton-&gt;setText(&quot;我是一个按钮&quot;);</span><br><span class="line">&#125;</span><br><span class="line">MainWindow::~MainWindow()</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line">/* 实现按钮点击槽函数 */</span><br><span class="line">void MainWindow::pushButtonClicked()</span><br><span class="line">&#123;</span><br><span class="line">/* 使用 emit 发送信号 */</span><br><span class="line">emit pushButtonTextChanged();</span><br><span class="line">&#125;</span><br><span class="line">/* 实现按钮文本改变的槽函数 */</span><br><span class="line">void MainWindow::changeButtonText()</span><br><span class="line">&#123;</span><br><span class="line">/* 在槽函数里改变按钮的文本 */</span><br><span class="line">pushButton-&gt;setText(&quot;被点击了！ &quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="10">
+<li>使用emit 信号函数，主动发送信号，由于目标是操作mainwindow下的对象因此使用槽函数去触发修改按键对象。</li>
+<li>连接信号和槽:写在类的构造函数</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">connect(pushButton, SIGNAL(clicked()), this,</span><br><span class="line">SLOT(pushButtonClicked()));</span><br><span class="line">connect(this, SIGNAL(pushButtonTextChanged()), this,</span><br><span class="line">SLOT(changeButtonText()));</span><br></pre></td></tr></table></figure>
+<h4 id="控件积累">控件积累</h4>
+<p>详细参考我之前提到的正点原子文档，这里只做特殊控件的介绍。</p>
+<ol>
+<li>按钮类，要注意radiobutton，他提供带文档的互斥按钮，通过check指示。这里开始涉及到<strong>qss样式表文件</strong>了，使用qss把文本样式变成image。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">QFile file(&quot;:/style.qss&quot;);</span><br><span class="line">/* 判断文件是否存在 */</span><br><span class="line">if (file.exists())&#123;</span><br><span class="line">/* 以只读的方式打开 */</span><br><span class="line">file.open(QFile::ReadOnly);</span><br><span class="line">/* 以字符串的方式保存读出的结果 */</span><br><span class="line">QString styleSheet = QLatin1String(file.readAll());</span><br><span class="line">/* 设置全局样式 */</span><br><span class="line">qApp-&gt;setStyleSheet(styleSheet);</span><br><span class="line">    file.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>qDebug()，qt自定义的调试语句</li>
+<li>基于模型的控件，需要建模，减少了冗余数据。<br>
+QListView就是一个是基于模型的类，被QListWidget继承，而QListWidget，是基于项目的类，实际上就是模型基类加一个封装好的项目：QListWidgetItem。操作基于项目的控件可以直接调用addItem添加项目，实现集成化功能。<br>
+单独使用基于模型的类时要自己创建模型，Qt 提供了一些类型的 Model，其中最常用的就是这个<br>
+QStandardItemModel 类，一般可以满足大部分需求。</li>
+</ol>
+<h4 id="文件读写">文件读写</h4>
+<ol>
+<li>打开系统文件资源管理获取文件路径</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">QString fileName = QFileDialog::getOpenFileName(this, </span><br><span class="line">                                                tr(&quot;Open File&quot;), </span><br><span class="line">                                                &quot;/home&quot;, </span><br><span class="line">                                                tr(&quot;Images (*.png *.jpg)&quot;));</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>QFile传入路径，操作文件。可以选择只读打开，判断文件是否存在等等。</li>
+<li>QString字符串对象，用于接收路径，传入路径给Qfile</li>
+<li>textEdit-&gt;setPlainText(file.readAll());，显示框，显示文本。</li>
+<li>file.write(strBytes, strBytes.length());不能写入字符串只能写入字节数据，因此需要QByteArray strBytes = str.toUtf8();，转换一下。</li>
+<li>QTextStream，文本流，stream&lt;&lt;str;，QTextStream stream(&amp;file);更好的操作Qfile</li>
+</ol>
+<h4 id="绘图与图表">绘图与图表</h4>
+<ol>
+<li>QPaintengine和QPaintdevice，提供基础，QPainter直接实现绘图</li>
+<li>绘图事件，paintEvent()，在初始化和手动调用刷新页面update()时使用。是虚函数被多个类继承，用到的时候需要重写。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/* 重写父类下的 protected 方法*/</span><br><span class="line">protected:</span><br><span class="line">void paintEvent(QPaintEvent *);</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>图表：需要在pro文件中加入编译条件：QT += charts。在编译器跳转至定义的话则需要在头文件加入using namespace QtCharts;</li>
+</ol>
+<h4 id="多线程">多线程</h4>
+<ol>
+<li>QThread 对象在程<br>
+序中管理一个控制线程。 QThreads 在 run()中开始执行。默认情况下， run()通过调用 exec()来启动事件循环，并在线程中运行 Qt 事件循环。您可以通过使用 QObject::moveToThread()将 worker对象移动到线程来使用它们。</li>
+<li>Qt 有两种多线程的方法，其中一种是继承 QThread<br>
+的 run()函数，另外一种是把一个继承于 QObject 的类转移到一个 Thread 里。</li>
+<li>继承 QThread 是创建线程的一个普通方法。 其中创建的线程<br>
+只有 run()方法在线程里的。其他类内定义的方法都在主线程内。</li>
+<li>具体为定义创建workthread对象重定义run函数或者创建一个类继承QObject类然后moveToThread传入workerthread类。</li>
+</ol>
+<h4 id="网络编程">网络编程</h4>
+<ol>
+<li>pro加入QT += network</li>
+<li>相关的类太多了，这里简要提一下，通过 QHostInfo 和 QNetworkInterface 类获取本地网络所有接口的信息。</li>
+<li>TCP：在 Qt 中，Qt 把 socket 当成输入输出流来对待的，数据的收发是通过 read()和 write()来进行的，需要与我们常见的 send()与 recv()进行区分。</li>
+<li>客户端是：QTcpSocket，服务端是，QTcpSocket和QTcpServer。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">核心：</span><br><span class="line">    /* 通信套接字 */</span><br><span class="line">    QTcpSocket *tcpSocket;</span><br><span class="line">        /* tcp 服务器 */</span><br><span class="line">    QTcpServer *tcpServer;</span><br><span class="line">辅助：</span><br><span class="line">    /* 存储本地的 ip 列表地址 */</span><br><span class="line">    QList&lt;QHostAddress&gt; IPlist;</span><br><span class="line">api：</span><br><span class="line">/* 获取客户端的套接字 */</span><br><span class="line">tcpSocket = tcpServer-&gt;nextPendingConnection();</span><br><span class="line">/* 客户端的 ip 信息 */</span><br><span class="line">QString ip = tcpSocket-&gt;peerAddress().toString();</span><br><span class="line">/* 客户端的端口信息 */</span><br><span class="line">quint16 port = tcpSocket-&gt;peerPort();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">其实就是调用一堆函数read，看state，具体的通信协议被屏蔽了</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>
+<p>在server端，监听一个端口：地址和端口号。连接newConnection信号。如果client端调用connectToHost连接服务器的地址和端口时，将会触发server端的这个信号。跳转到槽函数nextPendingConnection()获取QTcpSocket*。这是个对象提供read等函数给你操作实际上的套接字。</p>
+</li>
+<li>
+<p>UDP，是不可靠通信，因此他有单播，广播：使用广播地址，把信息发送给这个地址网段里的所有主机，当然了还是得指定端口号，不然到了对应主机还是不知道给谁。；多/组播：不在组里的不发。</p>
+</li>
+<li>
+<p>因为广播是只有同一网段都会发，这种无差别的信息路由器不可能转发的，因此广播用于局域网通信，单播和组播都能互联网通信。</p>
+</li>
+<li>
+<p>单播与广播：本例大体流程首先获取本地 IP 地址。创建一个 udpSocket 套接字， 然后开启广播功能setSocketOption函数。然后就可以直接向目标端口和ip发送了，qint64 bytesSent = udpSocket-&gt;writeDatagram(data, broadcastAddr, port);。想要读取数据的话首先与套接字的信号绑定好自己的槽函数。以及绑定好监听端口。</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">udpReceiver-&gt;bind(port, QUdpSocket::ShareAddress)</span><br><span class="line">        udpReceiver-&gt;readDatagram(buffer.data(), buffer.size(), &amp;senderAddr, &amp;senderPort);</span><br><span class="line">        qDebug() &lt;&lt; &quot;Received broadcast from&quot; &lt;&lt; senderAddr &lt;&lt; &quot;:&quot; &lt;&lt; senderPort</span><br><span class="line">                 &lt;&lt; &quot;Data:&quot; &lt;&lt; buffer;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>
+<p>组播，需要加入组播的组， D 类 IP 地址不分网络地址和主机地址，是一个专门保留的地址，其地址范围为 224.0.0.0～239.255.255.255。 D 类 IP 地址主要用于多点广播（Multicast，也称为多播（组播））之中作为多播组 IP 地址。QUdpSocket 类支持 UDP 组播，提供了 joinMulticastGroup 方法使本地主机加入多播组，leaveMulticastGroup 离开多播组。</p>
+</li>
+<li>
+<p>组播接收端同样是bind一下，这个不能缺失因为他发到组里后还要知道具体发给那个端口，这里绑定的ip是本地ip和端口。然后加入组播组里，udpSocket-&gt;joinMulticastGroup(groupAddress)。然后发送端老样子发送，但是他是用的组播地址。</p>
+</li>
+<li>
+<p>这里讲一下，TCP的监听地址和UDP的绑定地址。同一都是电脑的，采用回环地址的话只能接收到本地的信息，采用局域网的就能接收到局域网信息等等。</p>
+</li>
+</ol>
+<h4 id="多媒体">多媒体</h4>
+<p>添加pro，QT += multimedia。 Qt 中的音乐播放器与视频播放器需要在 Ubuntu 里安装媒体解码器才能实现播放，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install gstreamer1.0-plugins-base gstreamer1.0-plugins-bad gstreamer1.0-plugins-good</span><br><span class="line">gstreamer1.0-plugins-ugly gstreamer1.0-pulseaudio gstreamer1.0-libav</span><br></pre></td></tr></table></figure>
+<h4 id="数据库">数据库</h4>
+<p>QT += core gui sql。加入这个。一般常用的数据库就是 Sqlite3。 SQLite 是非常小的，是轻量级的。<br>
+在 QSqlDatabase 连接<br>
+数据库后，用 QSqlTableModel 从数据库里读取出表格模型，然后通过 Qt 的 QTableView 类显示数据库的内容在我们面前。需要对数据库的数据进行修改可以使用 QSqlQuery，或者直接修改QSqlTableModel 对象，修改里面的模型数据即可</p>
+<h4 id="嵌入式开发QT">嵌入式开发QT</h4>
+<p>主要是提前把驱动文件写好注册进去到时候不要Qfile操作，直接Linux应用开发时的操作，或者官方提供好类直接操作，比如串口操作。</p>
+<ol>
+<li>pri 文件， include(headview/headview.pri)，正常来讲你定义了新的cpp和头文件时需要添加到pro文件使得编译生效，如果是使用频率很高的，则采用这种pri模式，这里面写的是qmake脚本，在这里面同一包含文件，减少重复操作。</li>
+</ol>
+</div><div class="article-licensing box"><div class="licensing-title"><p>嵌入式qt使用教程</p><p><a href="https://promise-157.github.io/myblog/2026/03/25/嵌入式qt使用教程/">https://promise-157.github.io/myblog/2026/03/25/嵌入式qt使用教程/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>John Doe</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2026-03-25</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2026-04-09</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/myblog/tags/qt/">qt</a><a class="link-muted mr-2" rel="tag" href="/myblog/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/">嵌入式</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/myblog/2026/03/26/leetcode/%E6%B5%8B%E8%AF%951/%E6%B5%8B%E8%AF%951/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">测试1</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/myblog/2026/03/25/linux%E9%85%8D%E7%BD%AEclash/"><span class="level-item">linux配置clash</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/myblog/images/userimage.jpg" alt="Promise"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Promise</p><p class="is-size-6 is-block">Your title</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Your location</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/myblog/archives/"><p class="title">16</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/myblog/categories/"><p class="title">7</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/myblog/tags/"><p class="title">8</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="RSS" href="/myblog/"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">1</span><span class="level-item">安装</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#wsl问题"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">wsl问题</span></span></a></li><li><a class="level is-mobile" href="#中文"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">中文</span></span></a></li></ul></li><li><a class="level is-mobile" href="#"><span class="level-left"><span class="level-item">2</span><span class="level-item">创建工程</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#相关名词解析"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">相关名词解析</span></span></a></li><li><a class="level is-mobile" href="#hello-world"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">hello world</span></span></a></li><li><a class="level is-mobile" href="#信号与槽"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">信号与槽</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#简述"><span class="level-left"><span class="level-item">2.3.1</span><span class="level-item">简述</span></span></a></li><li><a class="level is-mobile" href="#详述"><span class="level-left"><span class="level-item">2.3.2</span><span class="level-item">详述</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#取消ui编辑界面的代码编写"><span class="level-left"><span class="level-item">2.3.2.1</span><span class="level-item">取消ui编辑界面的代码编写</span></span></a></li><li><a class="level is-mobile" href="#控件积累"><span class="level-left"><span class="level-item">2.3.2.2</span><span class="level-item">控件积累</span></span></a></li><li><a class="level is-mobile" href="#文件读写"><span class="level-left"><span class="level-item">2.3.2.3</span><span class="level-item">文件读写</span></span></a></li><li><a class="level is-mobile" href="#绘图与图表"><span class="level-left"><span class="level-item">2.3.2.4</span><span class="level-item">绘图与图表</span></span></a></li><li><a class="level is-mobile" href="#多线程"><span class="level-left"><span class="level-item">2.3.2.5</span><span class="level-item">多线程</span></span></a></li><li><a class="level is-mobile" href="#网络编程"><span class="level-left"><span class="level-item">2.3.2.6</span><span class="level-item">网络编程</span></span></a></li><li><a class="level is-mobile" href="#多媒体"><span class="level-left"><span class="level-item">2.3.2.7</span><span class="level-item">多媒体</span></span></a></li><li><a class="level is-mobile" href="#数据库"><span class="level-left"><span class="level-item">2.3.2.8</span><span class="level-item">数据库</span></span></a></li><li><a class="level is-mobile" href="#嵌入式开发QT"><span class="level-left"><span class="level-item">2.3.2.9</span><span class="level-item">嵌入式开发QT</span></span></a></li></ul></li></ul></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/myblog/js/toc.js" defer></script></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/myblog/categories/bug%E9%9B%86%E9%94%A6/"><span class="level-start"><span class="level-item">bug集锦</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/myblog/categories/%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/"><span class="level-start"><span class="level-item">使用技巧</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/myblog/categories/%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/"><span class="level-start"><span class="level-item">使用教程</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/myblog/categories/%E6%95%99%E7%A8%8B/"><span class="level-start"><span class="level-item">教程</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/myblog/categories/%E6%9D%82%E9%A1%B9/"><span class="level-start"><span class="level-item">杂项</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/myblog/categories/%E7%AC%94%E8%AE%B0/"><span class="level-start"><span class="level-item">笔记</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/myblog/categories/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/"><span class="level-start"><span class="level-item">编程规范</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><figure class="media-left"><a class="image" href="/myblog/2026/04/09/hello-world/"><img src="/myblog/gallery/defaultThumbnail1.png" alt="Hello World"></a></figure><div class="media-content"><p class="date"><time dateTime="2026-04-09T11:35:12.105Z">2026-04-09</time></p><p class="title"><a href="/myblog/2026/04/09/hello-world/">Hello World</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/myblog/2026/04/06/%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90imx6ull%E5%BC%80%E5%8F%91%E6%9D%BF%E4%BD%BF%E7%94%A8/%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90imx6ull%E5%BC%80%E5%8F%91%E6%9D%BF%E4%BD%BF%E7%94%A8/"><img src="/myblog/gallery/defaultThumbnail4.png" alt="正点原子imx6ull开发板使用"></a></figure><div class="media-content"><p class="date"><time dateTime="2026-04-06T15:14:20.000Z">2026-04-06</time></p><p class="title"><a href="/myblog/2026/04/06/%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90imx6ull%E5%BC%80%E5%8F%91%E6%9D%BF%E4%BD%BF%E7%94%A8/%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90imx6ull%E5%BC%80%E5%8F%91%E6%9D%BF%E4%BD%BF%E7%94%A8/">正点原子imx6ull开发板使用</a></p><p class="categories"><a href="/myblog/categories/%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">使用教程</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/myblog/2026/04/05/%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/%E5%9C%A8vscode%E4%B8%8A%E8%BF%9B%E8%A1%8Cqt%E7%BC%96%E7%A8%8B/%E5%9C%A8vscode%E4%B8%8A%E8%BF%9B%E8%A1%8Cqt%E7%BC%96%E7%A8%8B/"><img src="/myblog/gallery/defaultThumbnail5.png" alt="在vscode上进行qt编程"></a></figure><div class="media-content"><p class="date"><time dateTime="2026-04-05T14:17:03.000Z">2026-04-05</time></p><p class="title"><a href="/myblog/2026/04/05/%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/%E5%9C%A8vscode%E4%B8%8A%E8%BF%9B%E8%A1%8Cqt%E7%BC%96%E7%A8%8B/%E5%9C%A8vscode%E4%B8%8A%E8%BF%9B%E8%A1%8Cqt%E7%BC%96%E7%A8%8B/">在vscode上进行qt编程</a></p><p class="categories"><a href="/myblog/categories/%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">使用教程</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/myblog/2026/04/05/bug%E9%9B%86%E9%94%A6/%E5%85%B3%E4%BA%8Elinux%E4%B8%AD%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8code%E5%91%BD%E4%BB%A4/%E5%85%B3%E4%BA%8Elinux%E4%B8%AD%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8code%E5%91%BD%E4%BB%A4/"><img src="/myblog/gallery/defaultThumbnail5.png" alt="关于linux中无法使用code命令"></a></figure><div class="media-content"><p class="date"><time dateTime="2026-04-05T10:56:54.000Z">2026-04-05</time></p><p class="title"><a href="/myblog/2026/04/05/bug%E9%9B%86%E9%94%A6/%E5%85%B3%E4%BA%8Elinux%E4%B8%AD%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8code%E5%91%BD%E4%BB%A4/%E5%85%B3%E4%BA%8Elinux%E4%B8%AD%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8code%E5%91%BD%E4%BB%A4/">关于linux中无法使用code命令</a></p><p class="categories"><a href="/myblog/categories/bug%E9%9B%86%E9%94%A6/">bug集锦</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/myblog/2026/04/04/%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/GitHub%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/GitHub%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/"><img src="/myblog/gallery/defaultThumbnail5.png" alt="GitHub使用技巧"></a></figure><div class="media-content"><p class="date"><time dateTime="2026-04-04T16:13:05.000Z">2026-04-04</time></p><p class="title"><a href="/myblog/2026/04/04/%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/GitHub%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/GitHub%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/">GitHub使用技巧</a></p><p class="categories"><a href="/myblog/categories/%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/">使用技巧</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/myblog/archives/2026/04/"><span class="level-start"><span class="level-item">April 2026</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/myblog/archives/2026/03/"><span class="level-start"><span class="level-item">March 2026</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/myblog/tags/clash/"><span class="tag">clash</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/myblog/tags/hexo/"><span class="tag">hexo</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/myblog/tags/private/"><span class="tag">private</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/myblog/tags/qt/"><span class="tag">qt</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/myblog/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"><span class="tag">嵌入式</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/myblog/tags/%E6%95%99%E7%A8%8B/"><span class="tag">教程</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/myblog/tags/%E6%9C%AA%E5%88%86%E7%B1%BB/"><span class="tag">未分类</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/myblog/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/"><span class="tag">编程规范</span><span class="tag">1</span></a></div></div></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/myblog/"><img src="/myblog/img/logo.svg" alt="Hexo" height="28"></a><p class="is-size-7"><span>&copy; 2026 John Doe</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><link rel="stylesheet" href="https://cdn.staticfile.net/aplayer/1.10.1/APlayer.min.css"><script src="https://cdn.staticfile.net/aplayer/1.10.1/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script><meting-js server="netease" type="playlist" id="13312157228" fixed="true" autoplay="false" loop="all" order="random" preload="auto" list-folded="true" theme="#3273dc"></meting-js><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/myblog/js/column.js"></script><script src="/myblog/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/myblog/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/myblog/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/myblog/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/myblog/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/myblog/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script><script src="/myblog/live2d_models/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2d_models/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/myblog/live2d_models/assets/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body></html>
