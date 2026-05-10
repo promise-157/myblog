@@ -2,5 +2,6 @@
     "hexo.deploy.showButton": true,
     "hexo.markdown.autoPreview": true,
     "hexo.toc.enableNumbering": true,
-    "hexo.upload": true
+    "hexo.upload": true,
+    "claudeCode.disableLoginPrompt": true
 }
