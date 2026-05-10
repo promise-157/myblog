@@ -9,11 +9,11 @@
     "server": "hexo server"
   },
   "hexo": {
-    "version": "8.1.1"
+    "version": "7.3.0"
   },
   "dependencies": {
     "fs-extra": "^11.3.4",
-    "hexo": "^8.0.0",
+    "hexo": "^7.3.0",
     "hexo-blog-encrypt": "^3.1.9",
     "hexo-deployer-git": "^4.0.0",
     "hexo-generator-archive": "^2.0.0",
@@ -30,8 +30,10 @@
     "hexo-tag-aplayer": "^3.0.4",
     "hexo-theme-icarus": "^6.1.1",
     "hexo-theme-landscape": "^1.0.0",
+    "hexo-util": "^3.3.0",
     "live2d-widget-model-hijiki": "^1.0.5",
     "live2d-widget-model-nico": "^1.0.5",
-    "markdown-it-toc-and-anchor": "^4.2.0"
+    "markdown-it-toc-and-anchor": "^4.2.0",
+    "semver": "^7.8.0"
   }
 }

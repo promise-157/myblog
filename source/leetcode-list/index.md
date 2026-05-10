@@ -9,5 +9,5 @@ widgets:
 ---
 > 本页为leetcode刷题的导航页，方便后续回顾,只记录印象较深的
 ## hot100
-### {% post_link title %}
+### {% post_link VScode配置hexo笔记 %}
 ### 待完善

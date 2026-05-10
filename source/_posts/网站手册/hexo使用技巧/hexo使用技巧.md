@@ -284,7 +284,7 @@ layout: false
 
 ### 文章间跳转
 1. 只要你在两篇文章的 Front-matter 里写了相同的 tags：Icarus 会自动在文章底部展示 “相关文章” 挂件。
-2. {% post_link title %}即可，可以使用这个方法手动创建md文件的目录。
+2. {% post_link VScode配置hexo笔记 %}即可，可以使用这个方法手动创建md文件的目录。
 
 ### 创建书页
 1. source下的md文件为home页，home页就是一开始的页
