@@ -20,3 +20,10 @@ QString appName() const override; 声明
 函数：QString MyApp::appName() const
 {}
 如果函数太短可以直接在h文件：QString appName() const override { return "视频播放器"; }
+# <>和“”的区别
+“”会在当前文件夹找一下，因此范围更广，其他头文件除了系统目录就是cmake文件指定的路径了
+# extern的作用
+通常来讲如果你变量定义在了头文件，其他文件包含头文件相当于多次创建了这个变量。
+因此需要在头文件声明的话请用extern，类和结构体就不用了，实际上需要的是他们的实例化对象。
+# 类写函数不用考虑先后声明
+很爽
