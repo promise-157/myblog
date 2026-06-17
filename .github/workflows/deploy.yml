@@ -48,9 +48,17 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
+        
           cd public/
+          if [ -z "$MY_TOKEN" ]; then
+          echo "❌ 警告：GH_TOKEN 在 GitHub 网页端根本没有配置！"
+          exit 1
+          else
+          echo "✅ 成功：GH_TOKEN 存在，长度为 ${#MY_TOKEN} 个字符。"
+          fi
           git init
           git add -A
           git commit -m "Create by workflows"
           git remote add origin https://${{ secrets.GH_TOKEN }}@github.com/promise-157/myblog.git
           git push origin HEAD:gh-pages -f
+          
