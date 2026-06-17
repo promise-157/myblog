@@ -50,12 +50,6 @@ jobs:
         run: |
         
           cd public/
-          if [ -z "$MY_TOKEN" ]; then
-          echo "❌ 警告：GH_TOKEN 在 GitHub 网页端根本没有配置！"
-          exit 1
-          else
-          echo "✅ 成功：GH_TOKEN 存在，长度为 ${#MY_TOKEN} 个字符。"
-          fi
           git init
           git add -A
           git commit -m "Create by workflows"
