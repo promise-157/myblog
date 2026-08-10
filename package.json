@@ -30,7 +30,7 @@
     "hexo-tag-aplayer": "^3.0.4",
     "hexo-theme-icarus": "^6.1.1",
     "hexo-theme-landscape": "^1.0.0",
-    "hexo-util": "^3.3.0",
+    "hexo-util": "^4.0.0",
     "live2d-widget-model-hijiki": "^1.0.5",
     "live2d-widget-model-nico": "^1.0.5",
     "markdown-it-toc-and-anchor": "^4.2.0",
