@@ -27,5 +27,6 @@ description:
           ├── reference.md          ←   辅助文件，SKILL.md 不引用就不读
           └── scripts/
               └── helper.sh         ←   辅助脚本
+              好像只有这种形式才能/xxx的方法调用
 ## claude.md
 不和skilss一样的触发机制，他是每次聊天都会使用到的。用于去除共性大的冗余提示。
